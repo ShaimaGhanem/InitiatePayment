@@ -140,12 +140,12 @@ public class SOAPClientSAAJ {
                 setRequestDataArray(requestDataArray);
 
             }
-            System.out.println("---------beginning of sending soap request 4---------------");
-            System.out.println("-----------------------------1-----------------------");
+            //System.out.println("---------beginning of sending soap request 4---------------");
+            //System.out.println("-----------------------------1-----------------------");
             SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
-            System.out.println("-----------------------------2-----------------------");
+            //System.out.println("-----------------------------2-----------------------");
             SOAPConnection soapConnection = soapConnectionFactory.createConnection();
-            System.out.println("-----------------------------3-----------------------");
+            //System.out.println("-----------------------------3-----------------------");
             // Send SOAP Message to SOAP Server
             soapResponse = soapConnection.call(createSOAPRequest(soapAction), soapEndpointUrl);
             soapConnection.close();
@@ -157,26 +157,26 @@ public class SOAPClientSAAJ {
     }
 
     private SOAPMessage createSOAPRequest(String soapAction) throws Exception {
-        System.out.println("-----------------------------4-----------------------");
+        //System.out.println("-----------------------------4-----------------------");
         MessageFactory messageFactory = MessageFactory.newInstance();
-        System.out.println("-----------------------------5-----------------------");
+        //System.out.println("-----------------------------5-----------------------");
         SOAPMessage soapMessage = messageFactory.createMessage();
-        System.out.println("-----------------------------6-----------------------");
+        //System.out.println("-----------------------------6-----------------------");
 
         createSoapEnvelopeInitPayment(soapMessage);
 
-        System.out.println("-----------------------------17-----------------------");
+        //System.out.println("-----------------------------17-----------------------");
         MimeHeaders headers = soapMessage.getMimeHeaders();
-        System.out.println("-----------------------------18-----------------------");
+        //System.out.println("-----------------------------18-----------------------");
         headers.addHeader("SOAPAction", soapAction);
-        System.out.println("-----------------------------19-----------------------");
+        //System.out.println("-----------------------------19-----------------------");
 
         soapMessage.saveChanges();
-        System.out.println("-----------------------------20-----------------------");
+        //System.out.println("-----------------------------20-----------------------");
         /* Print the request message, just for debugging purposes */
-       System.out.println("Request SOAP Message:");
+       //System.out.println("Request SOAP Message:");
         soapMessage.writeTo(System.out);
-        System.out.println("\n");
+        //System.out.println("\n");
 
         return soapMessage;
     }
