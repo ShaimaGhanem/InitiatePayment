@@ -40,6 +40,7 @@ public class InitiatePayment extends HttpServlet {
             Iterator itr;
 
             String data;
+            
             StringBuilder builder = new StringBuilder();
             BufferedReader reader = request.getReader();
             String line;
@@ -47,7 +48,9 @@ public class InitiatePayment extends HttpServlet {
                 builder.append(line);
             }
             data = builder.toString();
-            System.out.println("value of request data is : " + data);
+            //System.out.println("value of request data is : " + data);
+            if(data.length()>0)
+            {
 
             PostRequest requestDataArray = gson.fromJson(data, PostRequest.class);
            
@@ -59,12 +62,12 @@ public class InitiatePayment extends HttpServlet {
                 soapAction = "http://www.moi.gov.kw/Services/PayGateService/V1/initiatePayment";
                 mSOAPClientSAAJ = new SOAPClientSAAJ();
 
-                System.out.println("before calling callSoapWebService");
+                //System.out.println("before calling callSoapWebService");
                 soapResponse = mSOAPClientSAAJ.callSoapWebService(soapEndpointUrl, soapAction, requestDataArray);
-                System.out.println("after calling callSoapWebService");
-                System.out.println(" Response SOAP Message:");
-                soapResponse.writeTo(System.out);
-                System.out.println();
+                //System.out.println("after calling callSoapWebService");
+                //System.out.println(" Response SOAP Message:");
+                //soapResponse.writeTo(System.out);
+                //System.out.println();
 
                 itr = soapResponse.getSOAPBody().getChildElements();
                 PostResponse oResTrue;
@@ -92,7 +95,16 @@ public class InitiatePayment extends HttpServlet {
 
                 out.println(jsonData);
             }*/
+            }else
+            {
+                 System.err.println("\nThere is no Data in the body of the request\n");
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                String jsonData = "There is no Data in the body of the request";
+                PrintWriter out = response.getWriter();
 
+                out.println(jsonData);
+            }
         } catch (SOAPException ex) {
             Logger.getLogger(InitiatePayment.class.getName()).log(Level.SEVERE, null, ex);
         }

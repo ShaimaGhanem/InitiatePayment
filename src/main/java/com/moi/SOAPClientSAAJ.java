@@ -135,7 +135,7 @@ public class SOAPClientSAAJ {
         SOAPMessage soapResponse = null;
         try {
 
-            System.out.println("---------beginning of sending soap request 3---------------");
+           // System.out.println("---------beginning of sending soap request 3---------------");
             if (requestDataArray != null) {
                 setRequestDataArray(requestDataArray);
 
