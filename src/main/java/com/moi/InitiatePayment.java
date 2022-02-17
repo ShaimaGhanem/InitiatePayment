@@ -22,7 +22,7 @@ import javax.xml.soap.SOAPMessage;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-@WebServlet("/InitiatePaymentRequest")
+@WebServlet("/")
 public class InitiatePayment extends HttpServlet {
 
     
